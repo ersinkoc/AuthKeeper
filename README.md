@@ -388,7 +388,7 @@ Contributions are welcome! Please read our contributing guidelines first.
 
 ## 📄 License
 
-MIT © [OXOG]
+MIT © Ersin KOÇ
 
 ## 🔗 Links
 

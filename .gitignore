@@ -42,3 +42,14 @@ pnpm-debug.log*
 
 # OS
 Thumbs.db
+
+# Vitest
+*.timestamp-*.mjs
+
+# Website
+website/node_modules/
+website/dist/
+website/.cache/
+website/.temp/
+website/.vite/
+website/package-lock.json

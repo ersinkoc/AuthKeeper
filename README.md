@@ -30,6 +30,8 @@ npm install @oxog/authkeeper
 yarn add @oxog/authkeeper
 # or
 pnpm add @oxog/authkeeper
+# or
+bun add @oxog/authkeeper
 ```
 
 ## 🚀 Quick Start
@@ -275,7 +277,7 @@ Functions:     100%
 Execution:     ~2.5 seconds
 ```
 
-See [TESTING.md](TESTING.md) for detailed testing documentation.
+See [docs/testing/TESTING.md](docs/testing/TESTING.md) for detailed testing documentation.
 
 ## 📖 API Reference
 
@@ -393,10 +395,10 @@ MIT © Ersin KOÇ
 ## 🔗 Links
 
 - [Documentation](./docs)
-- [Testing Guide](./TESTING.md)
-- [Test Report](./TEST_REPORT.md)
+- [Testing Guide](./docs/testing/TESTING.md)
+- [Test Report](./docs/testing/TEST_REPORT.md)
 - [Changelog](./CHANGELOG.md)
-- [Issues](https://github.com/oxog/authkeeper/issues)
+- [Issues](https://github.com/ersinkoc/authkeeper/issues)
 
 ## 💡 Inspiration
 

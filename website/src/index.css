@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+
+  code,
+  pre,
+  .font-mono {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+    font-feature-settings: 'liga', 'calt';
+  }
+
+  /* Better scrollbar */
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-secondary/30;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/30 rounded-lg;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/50;
+  }
+
+  /* Selection */
+  ::selection {
+    @apply bg-primary/20;
+  }
+
+  /* Focus visible */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Grid background for developer aesthetic */
+  .grid-background {
+    background-image:
+      linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* Code block styling */
+  pre {
+    @apply bg-secondary/50 rounded-lg p-4 overflow-x-auto border border-border;
+  }
+
+  pre code {
+    @apply bg-transparent text-sm;
+  }
+
+  /* Inline code */
+  :not(pre) > code {
+    @apply bg-secondary px-1.5 py-0.5 rounded text-sm font-mono;
+  }
+}
+
+@layer utilities {
+  /* Developer-style animations */
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 10px -10px hsl(var(--primary));
+    }
+    to {
+      box-shadow: 0 0 10px 10px hsl(var(--primary) / 0.3);
+    }
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.5s ease-out;
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* IDE-style panels */
+  .panel-border {
+    @apply border-l border-border;
+  }
+
+  .panel-border-top {
+    @apply border-t border-border;
+  }
+
+  /* Terminal/Console styling */
+  .terminal {
+    @apply bg-black text-green-400 font-mono p-4 rounded-lg;
+  }
+
+  .terminal-prompt::before {
+    content: '$ ';
+    @apply text-green-600;
+  }
+
+  /* Browser window mockup */
+  .browser-window {
+    @apply rounded-lg border border-border overflow-hidden shadow-2xl;
+  }
+
+  .browser-controls {
+    @apply flex gap-2 p-3 border-b border-border bg-secondary/50;
+  }
+
+  .browser-dot {
+    @apply w-3 h-3 rounded-full;
+  }
+
+  .browser-dot-red {
+    @apply bg-red-500;
+  }
+
+  .browser-dot-yellow {
+    @apply bg-yellow-500;
+  }
+
+  .browser-dot-green {
+    @apply bg-green-500;
+  }
+
+  /* Badge variations */
+  .badge-success {
+    @apply bg-green-500/10 text-green-600 dark:text-green-400;
+  }
+
+  .badge-info {
+    @apply bg-blue-500/10 text-blue-600 dark:text-blue-400;
+  }
+
+  .badge-warning {
+    @apply bg-yellow-500/10 text-yellow-600 dark:text-yellow-400;
+  }
+
+  .badge-error {
+    @apply bg-red-500/10 text-red-600 dark:text-red-400;
+  }
+}

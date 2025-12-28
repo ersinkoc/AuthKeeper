@@ -1,0 +1,114 @@
+{
+  "name": "@oxog/authkeeper",
+  "version": "1.0.0",
+  "description": "Zero-dependency token & auth management toolkit with micro-kernel plugin architecture",
+  "author": "Ersin KOÇ",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ersinkoc/authkeeper.git"
+  },
+  "homepage": "https://authkeeper.oxog.dev",
+  "bugs": {
+    "url": "https://github.com/ersinkoc/authkeeper/issues"
+  },
+  "keywords": [
+    "authentication",
+    "jwt",
+    "token",
+    "oauth2",
+    "pkce",
+    "refresh-token",
+    "auth",
+    "security",
+    "typescript",
+    "zero-dependency"
+  ],
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./plugins": {
+      "types": "./dist/plugins/index.d.ts",
+      "import": "./dist/plugins/index.js",
+      "require": "./dist/plugins/index.cjs"
+    },
+    "./react": {
+      "types": "./dist/react/index.d.ts",
+      "import": "./dist/react/index.js",
+      "require": "./dist/react/index.cjs"
+    },
+    "./vue": {
+      "types": "./dist/vue/index.d.ts",
+      "import": "./dist/vue/index.js",
+      "require": "./dist/vue/index.cjs"
+    },
+    "./svelte": {
+      "types": "./dist/svelte/index.d.ts",
+      "import": "./dist/svelte/index.js",
+      "require": "./dist/svelte/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --ext .ts,.tsx",
+    "format": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "prepublishOnly": "npm run build && npm run test:coverage"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@testing-library/react": "^14.1.2",
+    "@testing-library/svelte": "^4.0.5",
+    "@types/node": "^20.10.6",
+    "@types/react": "^18.2.46",
+    "@typescript-eslint/eslint-plugin": "^6.17.0",
+    "@typescript-eslint/parser": "^6.17.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "@vitest/coverage-v8": "^1.1.0",
+    "@vitest/ui": "^1.1.0",
+    "@vue/test-utils": "^2.4.3",
+    "eslint": "^8.56.0",
+    "happy-dom": "^12.10.3",
+    "prettier": "^3.1.1",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.10",
+    "vitest": "^1.1.0"
+  },
+  "peerDependencies": {
+    "react": ">=17.0.0",
+    "vue": ">=3.0.0",
+    "svelte": ">=3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "vue": {
+      "optional": true
+    },
+    "svelte": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

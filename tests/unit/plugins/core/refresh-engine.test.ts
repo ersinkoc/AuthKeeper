@@ -147,10 +147,10 @@ describe('RefreshEnginePlugin', () => {
     it('should throw error when no refresh token', async () => {
       mockKernel.getRefreshToken = vi.fn().mockReturnValue(null)
 
-      const promise = api.refresh()
+      const promise = expect(api.refresh()).rejects.toThrow('No refresh token available')
       await vi.runAllTimersAsync()
+      await promise
 
-      await expect(promise).rejects.toThrow('No refresh token available')
       expect(mockKernel.emit).toHaveBeenCalledWith(
         expect.objectContaining({
           type: 'error',
@@ -234,11 +234,12 @@ describe('RefreshEnginePlugin', () => {
       })
       const failingApi = failingPlugin.install(mockKernel as AuthKeeper)
 
-      const promise = failingApi.refresh()
+      const refreshPromise = failingApi.refresh()
+      const expectPromise = expect(refreshPromise).rejects.toThrow()
       expect(failingApi.isRefreshing()).toBe(true)
 
       await vi.runAllTimersAsync()
-      await expect(promise).rejects.toThrow()
+      await expectPromise
 
       expect(failingApi.isRefreshing()).toBe(false)
 
@@ -284,10 +285,9 @@ describe('RefreshEnginePlugin', () => {
     it('should throw after max retries exceeded', async () => {
       mockRefreshFn.mockRejectedValue(new Error('Always fails'))
 
-      const promise = api.refresh()
+      const promise = expect(api.refresh()).rejects.toThrow('Token refresh failed')
       await vi.runAllTimersAsync()
-
-      await expect(promise).rejects.toThrow('Token refresh failed')
+      await promise
 
       // Default maxRetries is 3, so 4 total attempts
       expect(mockRefreshFn).toHaveBeenCalledTimes(4)
@@ -305,10 +305,9 @@ describe('RefreshEnginePlugin', () => {
 
       mockRefreshFn.mockRejectedValue(new Error('Fails'))
 
-      const promise = customApi.refresh()
+      const promise = expect(customApi.refresh()).rejects.toThrow()
       await vi.runAllTimersAsync()
-
-      await expect(promise).rejects.toThrow()
+      await promise
 
       // maxRetries: 1 means 2 total attempts
       expect(mockRefreshFn).toHaveBeenCalledTimes(2)
@@ -320,10 +319,9 @@ describe('RefreshEnginePlugin', () => {
     it('should emit error event after max retries', async () => {
       mockRefreshFn.mockRejectedValue(new Error('Always fails'))
 
-      const promise = api.refresh()
+      const promise = expect(api.refresh()).rejects.toThrow()
       await vi.runAllTimersAsync()
-
-      await expect(promise).rejects.toThrow()
+      await promise
 
       expect(mockKernel.emit).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -546,9 +544,9 @@ describe('RefreshEnginePlugin', () => {
       })
       const a = p.install(mockKernel as AuthKeeper)
 
-      const promise = a.refresh()
+      const promise = expect(a.refresh()).rejects.toThrow()
       await vi.runAllTimersAsync()
-      await expect(promise).rejects.toThrow()
+      await promise
 
       expect(onRefreshError).toHaveBeenCalled()
 

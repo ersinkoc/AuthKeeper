@@ -238,4 +238,55 @@ describe('base64 utilities', () => {
       expect(Array.from(decoded)).toEqual(Array.from(original))
     })
   })
+
+  describe('Node.js environment (Buffer path)', () => {
+    const originalWindow = global.window
+    const originalWindowDescriptor = Object.getOwnPropertyDescriptor(global, 'window')
+
+    beforeAll(() => {
+      // Remove window to simulate Node.js environment
+      delete (global as any).window
+    })
+
+    afterAll(() => {
+      // Restore window
+      if (originalWindowDescriptor) {
+        Object.defineProperty(global, 'window', originalWindowDescriptor)
+      } else {
+        global.window = originalWindow
+      }
+    })
+
+    it('should use Buffer in Node.js environment for stringToBase64Url', () => {
+      const str = 'hello'
+      const encoded = stringToBase64Url(str)
+      expect(encoded).toBe('aGVsbG8')
+    })
+
+    it('should use Buffer in Node.js environment for base64UrlDecode', () => {
+      const encoded = 'aGVsbG8'
+      const decoded = base64UrlDecode(encoded)
+      expect(decoded).toBe('hello')
+    })
+
+    it('should use Buffer in Node.js environment for base64UrlDecodeToBytes', () => {
+      const encoded = 'aGVsbG8'
+      const decoded = base64UrlDecodeToBytes(encoded)
+      expect(Array.from(decoded)).toEqual([104, 101, 108, 108, 111])
+    })
+
+    it('should handle Node.js round-trip', () => {
+      const original = 'Hello World 世界'
+      const encoded = stringToBase64Url(original)
+      const decoded = base64UrlDecode(encoded)
+      expect(decoded).toBe(original)
+    })
+
+    it('should handle Node.js binary round-trip', () => {
+      const original = new Uint8Array([0, 1, 2, 3, 255, 254, 253])
+      const encoded = base64UrlEncode(original)
+      const decoded = base64UrlDecodeToBytes(encoded)
+      expect(Array.from(decoded)).toEqual(Array.from(original))
+    })
+  })
 })

@@ -5,6 +5,52 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2025-12-28
+
+### ✨ Improvements
+
+#### Testing
+- ✅ **100% Code Coverage Achieved!**
+  - Statements: 100% (was 99.83%)
+  - Branches: 100% (was 99.24%)
+  - Functions: 100% (was 100%)
+  - Lines: 100% (was 99.83%)
+- ✅ Added Node.js environment tests for base64 utilities
+- ✅ Fixed 6 unhandled promise rejections in refresh-engine tests
+- ✅ Improved test reliability and stability
+- ✅ Total tests: 546 (was 541)
+
+#### Documentation
+- 📚 Created comprehensive documentation website
+  - Modern React + Vite + TypeScript stack
+  - shadcn/ui components with Tailwind CSS
+  - Dark/Light theme support
+  - JetBrains Mono fonts for code
+  - Fully responsive design
+  - Pages: Home, Docs, API, Examples, Playground
+- 🚀 Automatic deployment to GitHub Pages
+  - GitHub Actions workflow
+  - Custom domain: https://authkeeper.oxog.dev
+  - Continuous deployment on every commit
+
+#### Quality
+- ✅ All tests passing with 100% success rate
+- ✅ Zero unhandled errors in test suite
+- ✅ Improved code reliability
+- ✅ Enhanced browser and Node.js compatibility
+
+### 🔧 Fixed
+- Fixed unhandled promise rejections in async refresh tests
+- Fixed test timing issues with promise error handling
+- Improved error handling in test suites
+
+### 📦 Build
+- Build successful: 36 files, 531.4 kB unpacked
+- Package size: 108.8 kB (gzipped)
+- All TypeScript definitions generated correctly
+
+---
+
 ## [1.0.0] - 2025-12-28
 
 ### 🎉 Initial Release
@@ -151,4 +197,5 @@ npm run test:coverage # Run with coverage report
 
 **For testing details, see [TESTING.md](TESTING.md)**
 
+[1.1.0]: https://github.com/ersinkoc/authkeeper/releases/tag/v1.1.0
 [1.0.0]: https://github.com/ersinkoc/authkeeper/releases/tag/v1.0.0
